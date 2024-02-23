@@ -8,12 +8,6 @@ document.addEventListener("DOMContentLoaded", function(){
         if (e.target.tagName != 'BUTTON'){
             click = !click;
             let draw = document.querySelector('#draw');
-            if(click){
-                draw.innerHTML = 'You can draw now';
-            }
-            else {
-                draw.innerHTML = 'You are not allowed to draw';
-            }
         }
     });
 
@@ -47,9 +41,6 @@ function getSize(){
     else if (input < 0 || input > 100){
         message.innerHTML = ('Please provide a number between 1-100');
     }
-    else {
-        message.innerHTML = ('Now you can play!');
-    }
     return input;
 }
 
@@ -68,7 +59,8 @@ function setColor(colorChoice){
    color = colorChoice;
 }
 
-function resetBoard(){
-    let divs = document.querySelectorAll('div');
+function resetBoard() {
+    let divs = document.querySelectorAll('.board div');
     divs.forEach((div) => div.style.backgroundColor = 'white');
 }
+
