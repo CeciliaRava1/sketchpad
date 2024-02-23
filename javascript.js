@@ -1,6 +1,27 @@
+let color = 'black';
+let click = false;
+
 document.addEventListener("DOMContentLoaded", function(){
-    createBoard(32);
-    console.log("hi");
+    createBoard(16);
+
+    document.querySelector('body').addEventListener('click', function(e){
+        if (e.target.tagName != 'BUTTON'){
+            click = !click;
+            let draw = document.querySelector('#draw');
+            if(click){
+                draw.innerHTML = 'You can draw now';
+            }
+            else {
+                draw.innerHTML = 'You are not allowed to draw';
+            }
+        }
+    });
+
+    let btn_select = document.querySelector('#select');
+    btn_select.addEventListener('click', function(){
+        let size = getSize();
+        createBoard(size);
+    });
 });
 
 function createBoard(size) {
@@ -12,7 +33,42 @@ function createBoard(size) {
     let numDivs = size * size;
     for (let i = 0; i < numDivs; i++){
         let div = document.createElement('div');
-        div.style.backgroundColor = 'yellow';
+        div.addEventListener('mouseover', colorDiv);
         board.insertAdjacentElement('beforeend', div);
     }
+}
+
+function getSize(){
+    let input = prompt('Give me a size for the board');
+    let message = document.querySelector('#message');
+    if(input == ""){
+        message.innerHTML = ('Please provide a number');
+    }
+    else if (input < 0 || input > 100){
+        message.innerHTML = ('Please provide a number between 1-100');
+    }
+    else {
+        message.innerHTML = ('Now you can play!');
+    }
+    return input;
+}
+
+function colorDiv(){
+    if(click){
+        if (color == 'random'){
+            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        }
+        else {
+            this.style.backgroundColor = 'black';
+        }
+    }
+}
+
+function setColor(colorChoice){
+   color = colorChoice;
+}
+
+function resetBoard(){
+    let divs = document.querySelectorAll('div');
+    divs.forEach((div) => div.style.backgroundColor = 'white');
 }
