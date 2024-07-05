@@ -24,7 +24,7 @@ This is a simple sketchpad application developed as part of The Odin Project cur
 
 ## Demo
 
-You can view a live demo of the project [here](https://github.com/CeciliaRava1).
+You can view a live demo of the project [here](https://ceciliarava1.github.io/sketchpad/).
 
 ## Screenshot
 
